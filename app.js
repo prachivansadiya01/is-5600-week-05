@@ -1,5 +1,6 @@
 const express = require('express')
 const api = require('./api')
+const order = require('./orders')
 const middleware = require('./middleware')
 const bodyParser = require('body-parser')
 
@@ -16,6 +17,11 @@ app.use(middleware.cors)
 app.get('/', api.handleRoot)
 app.get('/products', api.listProducts)
 app.get('/products/:id', api.getProduct)
+
+app.get('/orders', api.listOrders)
+app.get('/orders/', api.createOrder)
+app.get('/delete/:id', order.destroy)
+app.get('/update/:id', order.edit)
 app.put('/products/:id', api.editProduct)
 app.delete('/products/:id', api.deleteProduct)
 app.post('/products', api.createProduct)
